@@ -1,0 +1,42 @@
+dependencies {
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.core:core-ktx:$core_ktx_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
+    implementation "androidx.legacy:legacy-support-v4:$legacy_support_version"
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    testImplementation "junit:junit:4.13.1"
+    androidTestImplementation "androidx.test.ext:junit:$androidx_junit_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0"
+    implementation "androidx.multidex:multidex:$multidex_version"
+
+    implementation "androidx.cardview:cardview:$cardview_version"
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+    implementation "com.google.android.material:material:$material_version"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+
+    implementation "com.gauravk.bubblenavigation:bubblenavigation:$bubble_navigation_version"
+    implementation "com.github.clans:fab:$custom_fab_version"
+    implementation "com.makeramen:roundedimageview:$riv_version"
+    implementation "com.miguelcatalan:materialsearchview:$material_search_view_version"
+    implementation "com.airbnb.android:lottie:$lottie_version"
+    implementation "com.flaviofaria:kenburnsview:$ken_burns_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+
+    //koin
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-android:$koin_version"
+
+    // Koin AndroidX Scope features
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    // Koin AndroidX ViewModel features
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    // Koin AndroidX Fragment features
+    implementation "org.koin:koin-androidx-fragment:$koin_version"
+    // Koin AndroidX Experimental features
+    implementation "org.koin:koin-androidx-ext:$koin_version"
+
+    //Play Core
+    implementation "com.google.android.play:core:1.9.0"
+}
