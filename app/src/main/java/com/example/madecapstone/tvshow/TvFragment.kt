@@ -138,12 +138,15 @@ class TvFragment : Fragment(), View.OnClickListener {
         when (state) {
             Status.ERROR -> {
                 binding?.progressBar?.visibility = View.GONE
+                binding?.tvNotfound?.visibility = View.VISIBLE
             }
             Status.LOADING -> {
                 binding?.progressBar?.visibility = View.VISIBLE
+                binding?.tvNotfound?.visibility = View.GONE
             }
             Status.SUCCESS -> {
                 binding?.progressBar?.visibility = View.GONE
+                binding?.tvNotfound?.visibility = View.GONE
             }
         }
     }

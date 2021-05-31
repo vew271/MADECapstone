@@ -1,30 +1,31 @@
-<resources>
-    <string name="app_name">Movie Catalog</string>
-    <string name="dummyTitle">Movie Title</string>
-    <string name="dummyDate">Movie Date</string>
-    <string name="dummyUserScore">75%</string>
-    <string name="dummyOverview">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur diam eget volutpat porta. Sed dictum id mi in facilisis. Suspendisse vehicula convallis efficitur. Nunc imperdiet velit ut est hendrerit, vel cursus libero pellentesque. Sed varius vel orci in finibus. Etiam eu enim justo. Duis tempor ipsum in sem aliquam, id vestibulum odio imperdiet. Curabitur condimentum sem lacus, nec mattis diam pharetra nec. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; In ac erat at lorem mattis varius. Etiam eu risus metus.</string>
-    <string name="baseUrlImage">http://image.tmdb.org/t/p/w185%s</string>
-    <string name="baseUrlBackdrop">http://image.tmdb.org/t/p/w500%s</string>
-    <string name="shareTitle">Bagikan film ini sekarang.</string>
-    <string name="shareText">Good Film!</string>
-    <string name="overview">Overview</string>
-    <string name="share">Share</string>
-    <string name="backdrop">Backdrop</string>
-    <string name="backbutton">BackButton</string>
-    <string name="poster">Poster</string>
-    <string name="icon">icon</string>
-    <string name="favorite">favorite</string>
-    <string name="search">Search</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:keep="@string/app_name">Movie Catalog</string>
+    <string name="dummyTitle" tools:keep="@string/dummyTitle">Movie Title</string>
+    <string name="dummyDate" tools:keep="@string/dummyDate">Movie Date</string>
+    <string name="dummyUserScore" tools:keep="@string/dummyUserScore">75%</string>
+    <string name="dummyOverview" tools:keep="@string/dummyOverview">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur diam eget volutpat porta. Sed dictum id mi in facilisis. Suspendisse vehicula convallis efficitur. Nunc imperdiet velit ut est hendrerit, vel cursus libero pellentesque. Sed varius vel orci in finibus. Etiam eu enim justo. Duis tempor ipsum in sem aliquam, id vestibulum odio imperdiet. Curabitur condimentum sem lacus, nec mattis diam pharetra nec. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; In ac erat at lorem mattis varius. Etiam eu risus metus.</string>
+    <string name="baseUrlImage" tools:keep="@string/baseUrlImage">http://image.tmdb.org/t/p/w185%s</string>
+    <string name="baseUrlBackdrop" tools:keep="@string/baseUrlBackdrop">http://image.tmdb.org/t/p/w500%s</string>
+    <string name="shareTitle" tools:keep="@string/shareTitle">Bagikan film ini sekarang.</string>
+    <string name="shareText" tools:keep="@string/shareText">Good Film!</string>
+    <string name="overview" tools:keep="@string/overview">Overview</string>
+    <string name="share" tools:keep="@string/share">Share</string>
+    <string name="backdrop" tools:keep="@string/backdrop">Backdrop</string>
+    <string name="backbutton" tools:keep="@string/backbutton">BackButton</string>
+    <string name="poster" tools:keep="@string/poster">Poster</string>
+    <string name="icon" tools:keep="@string/icon">icon</string>
+    <string name="favorite" tools:keep="@string/favorite">favorite</string>
+    <string name="search" tools:keep="@string/search">Search</string>
     <string name="movie">Movie</string>
     <string name="tvshow">TV Show</string>
-    <string name="fav">Favorite</string>
+    <string name="fav" tools:keep="@string/fav">Favorite</string>
     <string name="blank">Blank</string>
-    <string name="darken">DarkenEffect</string>
+    <string name="darken" tools:keep="@string/darken">DarkenEffect</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" tools:keep="@string/hello_blank_fragment">Hello blank fragment</string>
     <string name="title_favorite">Favorite</string>
     <string name="nofav">No Favorites Yet</string>
     <string name="message_undo">Cancel Delete?</string>
     <string name="message_ok">Yes</string>
+    <string name="notfound" tools:keep="@string/notfound">Not Found</string>
 </resources>
