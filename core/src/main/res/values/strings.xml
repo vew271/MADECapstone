@@ -26,4 +26,5 @@
     <string name="nofav">No Favorites Yet</string>
     <string name="message_undo">Cancel Delete?</string>
     <string name="message_ok">Yes</string>
+    <string name="notfound">Not Found</string>
 </resources>
