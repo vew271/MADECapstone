@@ -20,30 +20,24 @@ class DiffUtils(private val oldList: List<Movie>, private val newList: List<Movi
             title,
             releaseDate,
             overview,
-            popularity,
-            voteAverage,
-            voteCount,
             posterPath,
+            backdropPath,
             favorite,
             isTvShows) = oldList[oldPosition]
         val (_,
             title1,
             releaseDate1,
             overview1,
-            popularity1,
-            voteAverage1,
-            voteCount1,
             posterPath1,
+            backdropPath1,
             favorite1,
             isTvShows1) = newList[newPosition]
 
         return overview == overview1
                 && title == title1
                 && releaseDate == releaseDate1
-                && popularity == popularity1
-                && voteAverage == voteAverage1
-                && voteCount == voteCount1
                 && posterPath == posterPath1
+                && backdropPath == backdropPath1
                 && favorite == favorite1
                 && isTvShows == isTvShows1
     }

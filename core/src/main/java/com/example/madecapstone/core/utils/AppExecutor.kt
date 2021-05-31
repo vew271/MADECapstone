@@ -23,11 +23,7 @@ class AppExecutor @VisibleForTesting constructor(
     )
 
     fun diskIO(): Executor = diskIO
-
-    //for network
 //    fun networkIO(): Executor = networkIO
-
-    //for mainThread
 //    fun mainThread(): Executor = mainThread
 
     private class MainThreadExecutor : Executor {

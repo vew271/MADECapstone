@@ -21,17 +21,11 @@ data class FilmEntity(
     @ColumnInfo(name = "overview")
     var overview: String,
 
-    @ColumnInfo(name = "popularity")
-    var popularity: Double,
-
-    @ColumnInfo(name = "voteAverage")
-    var voteAverage: Double,
-
-    @ColumnInfo(name = "voteCount")
-    var voteCount: Int,
-
     @ColumnInfo(name = "posterPath")
     var posterPath: String,
+
+    @ColumnInfo(name = "backdropPath")
+    var backdropPath: String,
 
     @ColumnInfo(name = "favorite")
     var favorite: Boolean = false,

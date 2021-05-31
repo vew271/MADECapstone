@@ -2,6 +2,7 @@ package com.example.madecapstone.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
@@ -37,31 +38,33 @@ class DetailActivity : AppCompatActivity() {
             titleDetail.text = movie.title
             date.text = movie.releaseDate
             overview.text = movie.overview
-            popularity.text = getString(
-                R.string.popularity_detail,
-                movie.popularity.toString(),
-                movie.voteCount.toString(),
-                movie.voteAverage.toString()
-            )
-            userScore.text = movie.voteAverage.toString()
             Glide.with(this@DetailActivity)
-                .load(getString(R.string.baseUrlImage, movie.posterPath))
-                .into(posterTopBar)
-            posterTopBar.tag = movie.posterPath
+                .load(getString(R.string.baseUrlBackdrop, movie.backdropPath))
+                .into(kbvBackdrop)
+            kbvBackdrop.tag = movie.backdropPath
 
             Glide.with(this@DetailActivity)
                 .load(getString(R.string.baseUrlImage, movie.posterPath))
-                .into(subPoster)
-            subPoster.tag = movie.posterPath
+                .into(rivPoster)
+            rivPoster.tag = movie.posterPath
 
             var favoriteState = movie.favorite
             setFavoriteState(favoriteState)
             binding.favoriteButton.setOnClickListener {
                 favoriteState = !favoriteState
                 viewModel.setFavoriteMovie(movie, favoriteState)
-                setFavoriteState(favoriteState)
+                setFavorite(favoriteState)
             }
         }
+    }
+
+    private fun setFavorite(state: Boolean){
+        if(state){
+            Toast.makeText(this, "Added to favorite", Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(this, "Removed from favorite", Toast.LENGTH_SHORT).show()
+        }
+        setFavoriteState(state)
     }
 
     private fun setFavoriteState(state: Boolean) {
@@ -84,7 +87,7 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        binding.posterTopBar.pause()
+        binding.kbvBackdrop.pause()
     }
 
     private fun share() {
@@ -92,7 +95,7 @@ class DetailActivity : AppCompatActivity() {
         ShareCompat.IntentBuilder.from(this).apply {
             setType(mimeType)
             setChooserTitle(getString(R.string.shareTitle))
-            setText(getString(R.string.shareBody))
+            setText(getString(R.string.shareText))
             startChooser()
         }
     }

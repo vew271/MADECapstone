@@ -3,86 +3,23 @@ package com.example.madecapstone.core.utils
 import androidx.sqlite.db.SimpleSQLiteQuery
 
 object SortUtils {
-    const val POPULARITY = "Popularity"
-    const val VOTE = "Vote"
-    const val NEWEST = "Newest"
-    const val RANDOM = "Random"
-
-    fun getSortedQueryMovies(filter: String): SimpleSQLiteQuery {
-        val simpleQuery = StringBuilder().append("SELECT * FROM movieEntities where isTvShow = 0 ")
-        when (filter) {
-            POPULARITY -> {
-                simpleQuery.append("ORDER BY popularity DESC")
-            }
-            NEWEST -> {
-                simpleQuery.append("ORDER BY releaseDate DESC")
-            }
-            VOTE -> {
-                simpleQuery.append("ORDER BY voteAverage DESC")
-            }
-            RANDOM -> {
-                simpleQuery.append("ORDER BY RANDOM()")
-            }
-        }
+    fun getSortedQueryMovies(): SimpleSQLiteQuery {
+        val simpleQuery = StringBuilder().append("SELECT * FROM filmEntity where isTvShow = 0 ORDER BY releaseDate DESC")
         return SimpleSQLiteQuery(simpleQuery.toString())
     }
 
-    fun getSortedQueryTvShows(filter: String): SimpleSQLiteQuery {
-        val simpleQuery = StringBuilder().append("SELECT * FROM filmEntity where isTvShow = 1 ")
-        when (filter) {
-            POPULARITY -> {
-                simpleQuery.append("ORDER BY popularity DESC")
-            }
-            NEWEST -> {
-                simpleQuery.append("ORDER BY releaseDate DESC")
-            }
-            VOTE -> {
-                simpleQuery.append("ORDER BY voteAverage DESC")
-            }
-            RANDOM -> {
-                simpleQuery.append("ORDER BY RANDOM()")
-            }
-        }
+    fun getSortedQueryTvShows(): SimpleSQLiteQuery {
+        val simpleQuery = StringBuilder().append("SELECT * FROM filmEntity where isTvShow = 1 ORDER BY releaseDate DESC")
         return SimpleSQLiteQuery(simpleQuery.toString())
     }
 
-    fun getSortedQueryFavoriteMovies(filter: String): SimpleSQLiteQuery {
-        val simpleQuery =
-            StringBuilder().append("SELECT * FROM filmEntity where favorite = 1 and isTvShow = 0 ")
-        when (filter) {
-            POPULARITY -> {
-                simpleQuery.append("ORDER BY popularity DESC")
-            }
-            NEWEST -> {
-                simpleQuery.append("ORDER BY releaseDate DESC")
-            }
-            VOTE -> {
-                simpleQuery.append("ORDER BY voteAverage DESC")
-            }
-            RANDOM -> {
-                simpleQuery.append("ORDER BY RANDOM()")
-            }
-        }
+    fun getSortedQueryFavoriteMovies(): SimpleSQLiteQuery {
+        val simpleQuery = StringBuilder().append("SELECT * FROM filmEntity where favorite = 1 and isTvShow = 0 ORDER BY releaseDate DESC")
         return SimpleSQLiteQuery(simpleQuery.toString())
     }
 
-    fun getSortedQueryFavoriteTvShows(filter: String): SimpleSQLiteQuery {
-        val simpleQuery =
-            StringBuilder().append("SELECT * FROM filmEntity where Favorite = 1 and isTvShow = 1 ")
-        when (filter) {
-            POPULARITY -> {
-                simpleQuery.append("ORDER BY popularity DESC")
-            }
-            NEWEST -> {
-                simpleQuery.append("ORDER BY releaseDate DESC")
-            }
-            VOTE -> {
-                simpleQuery.append("ORDER BY voteAverage DESC")
-            }
-            RANDOM -> {
-                simpleQuery.append("ORDER BY RANDOM()")
-            }
-        }
+    fun getSortedQueryFavoriteTvShows(): SimpleSQLiteQuery {
+        val simpleQuery = StringBuilder().append("SELECT * FROM filmEntity where Favorite = 1 and isTvShow = 1 ORDER BY releaseDate DESC")
         return SimpleSQLiteQuery(simpleQuery.toString())
     }
 }

@@ -21,12 +21,13 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
+                app:titleTextColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary" />
 
             <com.miguelcatalan.materialsearchview.MaterialSearchView
-                android:id="@+id/search_view"
+                android:id="@+id/msv_searc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/search"
@@ -51,19 +52,61 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <com.gauravk.bubblenavigation.BubbleNavigationConstraintView
         android:id="@+id/bottom_navbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:background="@color/white"
-        app:itemIconTint="@drawable/nav_color_state"
-        app:itemTextColor="@drawable/nav_color_state"
+        android:elevation="10dp"
+        android:padding="8dp"
+        app:bnc_mode="spread"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1"
-        app:menu="@menu/bottom_nav_menu" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/btMovies"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            app:bt_active="true"
+            app:bt_colorActive="@color/purple_700"
+            app:bt_colorInactive="@color/black"
+            app:bt_icon="@drawable/ic_baseline_movie_24"
+            app:bt_title="Movies"
+            app:layout_constraintEnd_toStartOf="@+id/btTvShows"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/bottom_navbar" />
+
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/btTvShows"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            app:bt_active="false"
+            app:bt_colorActive="@color/purple_700"
+            app:bt_colorInactive="@color/black"
+            app:bt_icon="@drawable/ic_baseline_live_tv_24"
+            app:bt_title="Tv Shows"
+            app:layout_constraintEnd_toStartOf="@+id/btFavorite"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btMovies"
+            app:layout_constraintTop_toTopOf="@id/bottom_navbar" />
+
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/btFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            app:bt_active="false"
+            app:bt_colorActive="@color/purple_700"
+            app:bt_colorInactive="@color/black"
+            app:bt_icon="@drawable/ic_baseline_favorite_24"
+            app:bt_title="Favorites"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btTvShows"
+            app:layout_constraintTop_toTopOf="@id/bottom_navbar" />
+
+    </com.gauravk.bubblenavigation.BubbleNavigationConstraintView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

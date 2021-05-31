@@ -8,6 +8,6 @@ import com.example.madecapstone.core.domain.model.Movie
 import com.example.madecapstone.core.domain.usecase.MovieUsecase
 
 class TvView(private val movieUsecase: MovieUsecase) : ViewModel() {
-    fun getTvShows(sort: String): LiveData<Resource<List<Movie>>> =
-        movieUsecase.getAllTvShows(sort).asLiveData()
+    fun getTvShows(): LiveData<Resource<List<Movie>>> =
+        movieUsecase.getAllTvShows().asLiveData()
 }

@@ -48,7 +48,7 @@ ext{
     ken_burns_version = "1.0.7"
     lottie_version = "3.6.0"
 
-    room_version = "2.2.6"
+    room_version = "2.3.0"
     sqlcipher_version = "4.4.0"
     sqlite_version = "2.1.0"
 

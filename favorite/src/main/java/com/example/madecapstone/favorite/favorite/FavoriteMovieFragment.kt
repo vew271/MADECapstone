@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.madecapstone.core.domain.model.Movie
 import com.example.madecapstone.core.ui.MovieAdapter
-import com.example.madecapstone.core.utils.SortUtils
 import com.example.madecapstone.detail.DetailActivity
 import com.example.madecapstone.favorite.R
 import com.example.madecapstone.favorite.databinding.FragmentFavoriteMovieBinding
@@ -35,7 +34,6 @@ class FavoriteMovieFragment(private val isMovie: Boolean) : Fragment(), View.OnC
 
     private lateinit var movieAdapter: MovieAdapter
     private val viewModel: FavoriteView by viewModel()
-    private var sort = SortUtils.RANDOM
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,7 +43,7 @@ class FavoriteMovieFragment(private val isMovie: Boolean) : Fragment(), View.OnC
         movieAdapter = MovieAdapter()
 
         setDataState(Status.LOADING)
-        setList(sort)
+        setList()
 
         with(binding?.rvFavmovie) {
             this?.layoutManager = LinearLayoutManager(context)
@@ -72,8 +70,7 @@ class FavoriteMovieFragment(private val isMovie: Boolean) : Fragment(), View.OnC
                 var state = movie.favorite
                 viewModel.setFavorite(movie, !state)
                 state = !state
-                val snackBar =
-                    Snackbar.make(view as View, R.string.message_undo, Snackbar.LENGTH_LONG)
+                val snackBar = Snackbar.make(view as View, R.string.message_undo, Snackbar.LENGTH_LONG)
                 snackBar.setAction(R.string.message_ok) {
                     viewModel.setFavorite(movie, !state)
                 }
@@ -82,11 +79,11 @@ class FavoriteMovieFragment(private val isMovie: Boolean) : Fragment(), View.OnC
         }
     })
 
-    private fun setList(sort: String) {
+    private fun setList() {
         if (isMovie) {
-            viewModel.getFavoriteMovies(sort).observe(viewLifecycleOwner, moviesObserver)
+            viewModel.getFavoriteMovies().observe(viewLifecycleOwner, moviesObserver)
         } else {
-            viewModel.getFavoriteTvShows(sort).observe(viewLifecycleOwner, moviesObserver)
+            viewModel.getFavoriteTvShows().observe(viewLifecycleOwner, moviesObserver)
         }
     }
 
@@ -102,19 +99,19 @@ class FavoriteMovieFragment(private val isMovie: Boolean) : Fragment(), View.OnC
     private fun setDataState(state: Status) {
         when (state) {
             Status.ERROR -> {
-//                binding?.favmovieblank?.visibility = View.VISIBLE
-//                binding?.notFound?.visibility = View.VISIBLE
-//                binding?.notFoundText?.visibility = View.VISIBLE
+                binding?.progressBar?.visibility = View.GONE
+                binding?.ivBlank?.visibility = View.VISIBLE
+                binding?.titleEmptyState?.visibility = View.VISIBLE
             }
             Status.LOADING -> {
-//                binding?.progressBar?.visibility = View.VISIBLE
-//                binding?.notFound?.visibility = View.GONE
-//                binding?.notFoundText?.visibility = View.GONE
+                binding?.progressBar?.visibility = View.VISIBLE
+                binding?.ivBlank?.visibility = View.GONE
+                binding?.titleEmptyState?.visibility = View.GONE
             }
             Status.SUCCESS -> {
-//                binding?.progressBar?.visibility = View.GONE
-//                binding?.notFound?.visibility = View.GONE
-//                binding?.notFoundText?.visibility = View.GONE
+                binding?.progressBar?.visibility = View.GONE
+                binding?.ivBlank?.visibility = View.GONE
+                binding?.titleEmptyState?.visibility = View.GONE
             }
         }
     }

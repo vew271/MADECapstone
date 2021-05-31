@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.madecapstone.R
 import com.example.madecapstone.databinding.ActivityMainBinding
 import com.example.madecapstone.movie.MovieFragment
+import com.example.madecapstone.tvshow.TvFragment
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 
@@ -23,9 +24,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         navigationChange(MovieFragment())
+        binding.bottomNavbar.setNavigationChangeListener { _, position ->
+            when (position) {
+                0 -> navigationChange(MovieFragment())
+                1 -> navigationChange(TvFragment())
+                2 -> toFavoriteFragment()
+            }
+        }
     }
 
-    private fun moveToFavoriteFragment() {
+    private fun toFavoriteFragment() {
         val fragment = instantiateFragment()
         Log.d("fragmentName", fragment.toString())
         if (fragment != null) {

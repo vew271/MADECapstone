@@ -13,7 +13,6 @@ import com.example.madecapstone.R
 import com.example.madecapstone.core.data.Resource
 import com.example.madecapstone.core.domain.model.Movie
 import com.example.madecapstone.core.ui.MovieAdapter
-import com.example.madecapstone.core.utils.SortUtils
 import com.example.madecapstone.databinding.FragmentTvBinding
 import com.example.madecapstone.detail.DetailActivity
 import com.example.madecapstone.main.MainActivity
@@ -39,7 +38,7 @@ class TvFragment : Fragment(), View.OnClickListener {
         val toolbar: Toolbar = activity?.findViewById<View>(R.id.toolbar) as Toolbar
         (activity as AppCompatActivity?)?.setSupportActionBar(toolbar)
         setHasOptionsMenu(true)
-        searchView = (activity as MainActivity).findViewById(R.id.search_view)
+        searchView = (activity as MainActivity).findViewById(R.id.msv_searc)
         return binding?.root
     }
 
@@ -47,13 +46,12 @@ class TvFragment : Fragment(), View.OnClickListener {
     private lateinit var tvAdapter: MovieAdapter
     private val searchViewModel: SearchView by viewModel()
     private lateinit var searchView: MaterialSearchView
-    private var sort = SortUtils.RANDOM
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         tvAdapter = MovieAdapter()
-        setList(sort)
+        setList()
         observeSearchQuery()
         setSearchList()
 
@@ -80,8 +78,8 @@ class TvFragment : Fragment(), View.OnClickListener {
         searchView.setMenuItem(menuItem)
     }
 
-    private fun setList(sort: String) {
-        viewModel.getTvShows(sort).observe(viewLifecycleOwner, tvShowsObserver)
+    private fun setList() {
+        viewModel.getTvShows().observe(viewLifecycleOwner, tvShowsObserver)
     }
 
     private val tvShowsObserver = Observer<Resource<List<Movie>>> { tvShow ->
@@ -126,11 +124,12 @@ class TvFragment : Fragment(), View.OnClickListener {
         searchView.setOnSearchViewListener(object : MaterialSearchView.SearchViewListener {
             override fun onSearchViewShown() {
                 setDataState(Status.SUCCESS)
+                setList()
             }
 
             override fun onSearchViewClosed() {
                 setDataState(Status.SUCCESS)
-                setList(sort)
+                setList()
             }
         })
     }

@@ -10,24 +10,9 @@ import kotlinx.coroutines.flow.flowOn
 
 class LocalDataSource(private val filmDAO: FilmDAO) {
 
-    fun getAllMovies(sort: String): Flow<List<FilmEntity>> {
-        val query = SortUtils.getSortedQueryMovies(sort)
+    fun getAllMovies(): Flow<List<FilmEntity>> {
+        val query = SortUtils.getSortedQueryMovies()
         return filmDAO.getMovies(query)
-    }
-
-    fun getAllTvShows(sort: String): Flow<List<FilmEntity>> {
-        val query = SortUtils.getSortedQueryTvShows(sort)
-        return filmDAO.getTvShows(query)
-    }
-
-    fun getAllFavoriteMovies(sort: String): Flow<List<FilmEntity>> {
-        val query = SortUtils.getSortedQueryFavoriteMovies(sort)
-        return filmDAO.getFavoriteMovies(query)
-    }
-
-    fun getAllFavoriteTvShows(sort: String): Flow<List<FilmEntity>> {
-        val query = SortUtils.getSortedQueryFavoriteTvShows(sort)
-        return filmDAO.getFavoriteTvShows(query)
     }
 
     fun getMovieSearch(search: String): Flow<List<FilmEntity>> {
@@ -36,10 +21,25 @@ class LocalDataSource(private val filmDAO: FilmDAO) {
             .conflate()
     }
 
+    fun getAllFavoriteMovies(): Flow<List<FilmEntity>> {
+        val query = SortUtils.getSortedQueryFavoriteMovies()
+        return filmDAO.getFavoriteMovies(query)
+    }
+
+    fun getAllTvShows(): Flow<List<FilmEntity>> {
+        val query = SortUtils.getSortedQueryTvShows()
+        return filmDAO.getTvShows(query)
+    }
+
     fun getTvShowSearch(search: String): Flow<List<FilmEntity>> {
         return filmDAO.getSearchTvShows(search)
             .flowOn(Dispatchers.Default)
             .conflate()
+    }
+
+    fun getAllFavoriteTvShows(): Flow<List<FilmEntity>> {
+        val query = SortUtils.getSortedQueryFavoriteTvShows()
+        return filmDAO.getFavoriteTvShows(query)
     }
 
     suspend fun insertMovies(movies: List<FilmEntity>) = filmDAO.insertMovie(movies)

@@ -6,7 +6,7 @@ import com.example.madecapstone.core.data.source.remote.response.TvResponse
 import com.example.madecapstone.core.domain.model.Movie
 
 object Mapper {
-    fun mapMovieResponsesToEntities(input: List<MovieResponse>): List<FilmEntity> {
+    fun movieResponsesToEntities(input: List<MovieResponse>): List<FilmEntity> {
         val movieList = ArrayList<FilmEntity>()
         input.map {
             val movie = FilmEntity(
@@ -14,10 +14,8 @@ object Mapper {
                 it.title,
                 it.releaseDate,
                 it.overview,
-                it.popularity,
-                it.voteAverage,
-                it.voteCount,
                 it.posterPath,
+                it.backdropPath,
                 favorite = false,
                 isTvShows = false
             )
@@ -26,7 +24,7 @@ object Mapper {
         return movieList
     }
 
-    fun mapTvShowResponsesToEntities(input: List<TvResponse>): List<FilmEntity> {
+    fun tvResponsesToEntities(input: List<TvResponse>): List<FilmEntity> {
         val movieList = ArrayList<FilmEntity>()
         input.map {
             val movie = FilmEntity(
@@ -34,10 +32,8 @@ object Mapper {
                 it.name,
                 it.firstAirDate,
                 it.overview,
-                it.popularity,
-                it.voteAverage,
-                it.voteCount,
                 it.posterPath,
+                it.backdropPath,
                 favorite = false,
                 isTvShows = true
             )
@@ -46,33 +42,29 @@ object Mapper {
         return movieList
     }
 
-    fun mapEntitiesToDomain(input: List<FilmEntity>): List<Movie> {
+    fun entityToDomain(input: List<FilmEntity>): List<Movie> {
         return input.map {
             Movie(
                 it.id,
                 it.title,
                 it.releaseDate,
                 it.overview,
-                it.popularity,
-                it.voteAverage,
-                it.voteCount,
                 it.posterPath,
+                it.backdropPath,
                 favorite = it.favorite,
                 isTvShows = it.isTvShows
             )
         }
     }
 
-    fun mapDomainToEntity(input: Movie): FilmEntity {
+    fun domainToEntity(input: Movie): FilmEntity {
         return FilmEntity(
             input.id,
             input.title,
             input.releaseDate,
             input.overview,
-            input.popularity,
-            input.voteAverage,
-            input.voteCount,
             input.posterPath,
+            input.backdropPath,
             favorite = input.favorite,
             isTvShows = input.isTvShows
         )

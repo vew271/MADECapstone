@@ -18,11 +18,11 @@ class MovieRepository(
     private val appExecutor: AppExecutor
 ) : CoreRepository {
 
-    override fun getAllMovies(sort: String): Flow<Resource<List<Movie>>> =
+    override fun getAllMovies(): Flow<Resource<List<Movie>>> =
         object : NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
             override fun loadFromDB(): Flow<List<Movie>> {
-                return localDataSource.getAllMovies(sort).map {
-                    Mapper.mapEntitiesToDomain(it)
+                return localDataSource.getAllMovies().map {
+                    Mapper.entityToDomain(it)
                 }
             }
 
@@ -35,16 +35,28 @@ class MovieRepository(
             }
 
             override suspend fun saveCallResult(data: List<MovieResponse>) {
-                val movieList = Mapper.mapMovieResponsesToEntities(data)
+                val movieList = Mapper.movieResponsesToEntities(data)
                 localDataSource.insertMovies(movieList)
             }
         }.asFlow()
 
-    override fun getAllTvShows(sort: String): Flow<Resource<List<Movie>>> =
+    override fun getSearchMovies(search: String): Flow<List<Movie>> {
+        return localDataSource.getMovieSearch(search).map {
+            Mapper.entityToDomain(it)
+        }
+    }
+
+    override fun getFavoriteMovies(): Flow<List<Movie>> {
+        return localDataSource.getAllFavoriteMovies().map {
+            Mapper.entityToDomain(it)
+        }
+    }
+
+    override fun getAllTvShows(): Flow<Resource<List<Movie>>> =
         object : NetworkBoundResource<List<Movie>, List<TvResponse>>() {
             override fun loadFromDB(): Flow<List<Movie>> {
-                return localDataSource.getAllTvShows(sort).map {
-                    Mapper.mapEntitiesToDomain(it)
+                return localDataSource.getAllTvShows().map {
+                    Mapper.entityToDomain(it)
                 }
             }
 
@@ -57,37 +69,25 @@ class MovieRepository(
             }
 
             override suspend fun saveCallResult(data: List<TvResponse>) {
-                val tvShowList = Mapper.mapTvShowResponsesToEntities(data)
+                val tvShowList = Mapper.tvResponsesToEntities(data)
                 localDataSource.insertMovies(tvShowList)
             }
         }.asFlow()
 
-    override fun getSearchMovies(search: String): Flow<List<Movie>> {
-        return localDataSource.getMovieSearch(search).map {
-            Mapper.mapEntitiesToDomain(it)
-        }
-    }
-
     override fun getSearchTvShows(search: String): Flow<List<Movie>> {
         return localDataSource.getTvShowSearch(search).map {
-            Mapper.mapEntitiesToDomain(it)
+            Mapper.entityToDomain(it)
         }
     }
 
-    override fun getFavoriteMovies(sort: String): Flow<List<Movie>> {
-        return localDataSource.getAllFavoriteMovies(sort).map {
-            Mapper.mapEntitiesToDomain(it)
-        }
-    }
-
-    override fun getFavoriteTvShows(sort: String): Flow<List<Movie>> {
-        return localDataSource.getAllFavoriteTvShows(sort).map {
-            Mapper.mapEntitiesToDomain(it)
+    override fun getFavoriteTvShows(): Flow<List<Movie>> {
+        return localDataSource.getAllFavoriteTvShows().map {
+            Mapper.entityToDomain(it)
         }
     }
 
     override fun setMovieFavorite(movie: Movie, state: Boolean) {
-        val movieEntity = Mapper.mapDomainToEntity(movie)
+        val movieEntity = Mapper.domainToEntity(movie)
         appExecutor.diskIO().execute { localDataSource.setMovieFavorite(movieEntity, state) }
     }
 }

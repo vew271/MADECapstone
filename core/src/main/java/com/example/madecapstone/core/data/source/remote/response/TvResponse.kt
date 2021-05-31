@@ -15,17 +15,11 @@ data class TvResponse(
     @field:SerializedName("overview")
     val overview: String,
 
-    @field:SerializedName("popularity")
-    val popularity: Double,
-
-    @field:SerializedName("vote_average")
-    val voteAverage: Double,
-
-    @field:SerializedName("vote_count")
-    val voteCount: Int,
-
     @field:SerializedName("poster_path")
     val posterPath: String,
+
+    @field:SerializedName("backdrop_path")
+    val backdropPath: String
 )
 
 data class ListTv(
